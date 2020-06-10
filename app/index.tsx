@@ -32,21 +32,19 @@ declare const global: {HermesInternal: null | {}};
 
 const App = () => {
 
-  const play = ()=>{
+  const play = async ()=>{
     const player = AudioPlayer.getInstance();
     const audio1 = new AudioTrace("1", require('./res/can_you_see.mp3'));
-    const audio2 = new AudioTrace("1", require('./res/can_you_see_the.mp3'));
-    player.setSpeed(0.5);
+    const audio2 = new AudioTrace("2", require('./res/can_you_see_the.mp3'));
 
-    player.addTrace(audio1);
-    player.addTrace(audio2);
-    player.play()
-    player.setSpeed(0.5);
+   await player.addTrace(audio1);
+   await player.addTrace(audio2);
+  await player.play()
+   await player.setSpeed(0.5);
   }
 
   useEffect(() => {
     play();
-
   }, [])
 
   return (

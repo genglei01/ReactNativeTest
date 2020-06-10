@@ -48,13 +48,14 @@ export default class AudioPlayer {
                 console.info('play-error', data);
             }),
         );
+
+        TrackPlayer.addEventListener('playback-track-changed', data => {
+            console.info('play-error', data);
+        })
     }
 
     async play(onEnd?: () => void) {
-        console.info('this._speed', this._speed);
         await TrackPlayer.play();
-        await TrackPlayer.setRate(this._speed);
-
     }
 
 
@@ -66,7 +67,6 @@ export default class AudioPlayer {
 
 
     setSpeed(value: number) {
-        TrackPlayer.setRate(value);
-        this._speed = value;
+      return  TrackPlayer.setRate(value);
     }
 }
